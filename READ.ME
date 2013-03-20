@@ -1,0 +1,27 @@
+
+修改：Gimhoy(http://blog.gimhoy.com)
+更新地址：http://blog.gimhoy.com/archives/wordpress-on-bae.html
+使用过程如有任何问题，也请直接到该页面留言。
+
+
+这是基于 3.5 中文版修改的 WordPress，可运行在百度云服务BAE上，使用百度云存储bcs来保存图片等，使用百度云消息bcms发送邮件，并在 BAE 上支持伪静态。
+
+
+修改内容及解决的问题
+安装过程优化：修改了 WordPress 的安装界面，针对 BAE 去掉了数据库的一些设置，取而代之的是百度云消息的消息队列名的设置。简化安装流程
+邮件服务的支持：替换了 wp_mail 函数，采用百度云消息来实现邮件的发送。
+页面乱码问题：在代码中交换 select db 和 set charset 的顺序，来解决 WordPress 在 BAE 运行时的乱码问题。
+附件上传功能：增加一个云存储的插件，启用该插件后，可以让上传的图片发送到百度云存储上。并同时可以在 WordPress 后台进行管理。
+
+安装前，你需要：
+1.拥有一个百度BAE账号，创建一个APP.
+2.访问百度云数据库，创建一个数据库（在应用下）.
+3.访问消息服务，创建一个消息队列.
+4.访问云存储，创建一个 bucket.
+
+安装过程中需自行根据提示创建wp-config.php后上传（或使用在线编辑器在线编辑）
+安装完成后在插件页面，激活百度云存储插件即可
+
+其他跟在普通空间安装wordpress无差别。
+
+具体安装教程请点击查看：http://blog.gimhoy.com/archives/install-wordpress-on-bae.html | 在BAE上安装WordPress的详细图文教程
