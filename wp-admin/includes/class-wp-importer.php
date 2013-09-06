@@ -190,7 +190,7 @@ class WP_Importer {
 
 		$args['headers'] = $headers;
 
-		return wp_remote_request( $url, $args );
+		return wp_safe_remote_request( $url, $args );
 	}
 
 	/**

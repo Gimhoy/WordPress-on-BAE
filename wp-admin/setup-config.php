@@ -113,7 +113,7 @@ switch($step) {
 <ol>
 	<li><?php _e( 'Database name' ); ?></li>
 	<li><?php _e( 'Table prefix (if you want to run more than one WordPress in a single database)' ); ?></li>
-	<li><?php _e( 'BCMS queue name (so that you can send email, get it from)' ); ?><a href="http://developer.baidu.com/bae/bms/list/" target="_blank">BCMS</a></li>
+	<li><?php _e( 'BCMS queue name (用于发送邮件，<a href="http://developer.baidu.com/bae/bms/list/" target="_blank">点击获取</a>)' ); ?></li>
 </ol>
 <p><strong><?php _e( "If for any reason this automatic file creation doesn&#8217;t work, don&#8217;t worry. All this does is fill in the database information to a configuration file. You may also simply open <code>wp-config-sample.php</code> in a text editor, fill in your information, and save it as <code>wp-config.php</code>." ); ?></strong></p>
 <p><?php _e( "In all likelihood, these items were supplied to you by your Web Host. If you do not have this information, then you will need to contact them before you can continue. If you&#8217;re all ready&hellip;" ); ?></p>
@@ -137,11 +137,11 @@ switch($step) {
 			<th scope="row"><label for="prefix"><?php _e( 'Table Prefix' ); ?></label></th>
 			<td><input name="prefix" id="prefix" type="text" value="wp_" size="25" /></td>
 			<td><?php _e( 'If you want to run multiple WordPress installations in a single database, change this.' ); ?></td>
-			</tr>
+		</tr>
 		<tr>
 			<th scope="row"><label for="bcmsqueuename"><?php _e( 'BCMS Queue name' ); ?></label></th>
 			<td><input name="bcmsqueuename" id="bcmsqueuename" type="text" value="" size="50" /></td>
-			<td><?php _e( 'sending Email, the BCMS queue name should type in.' ); ?><a href="http://developer.baidu.com/bae/bms/list/" target="_blank">BCMS</a></td>
+			<td><?php _e( '如果你希望使用邮件功能，请输入' ); ?><a href="http://developer.baidu.com/bae/bms/list/" target="_blank">消息队列名称</a></td>
 		</tr>
 	</table>
 	<?php if ( isset( $_GET['noapi'] ) ) { ?><input name="noapi" type="hidden" value="1" /><?php } ?>
@@ -152,7 +152,7 @@ switch($step) {
 
 	case 2:
 	foreach ( array( 'dbname', 'prefix', "bcmsqueuename" ) as $key )
-		$$key = trim( stripslashes( $_POST[ $key ] ) );
+		$$key = trim( wp_unslash( $_POST[ $key ] ) );
 
 	$tryagain_link = '</p><p class="step"><a href="setup-config.php?step=1" onclick="javascript:history.go(-1);return false;" class="button button-large">' . __( 'Try again' ) . '</a>';
 
@@ -227,6 +227,7 @@ switch($step) {
 			case 'DB_USER'     :
 			case 'DB_PASSWORD' :
 			case 'DB_HOST'     :
+			case 'BCMS_QUEUE'     :
 				$config_file[ $line_num ] = "define('" . $constant . "'," . $padding . "'" . addcslashes( constant( $constant ), "\\'" ) . "');\r\n";
 				break;
 			case 'AUTH_KEY'         :
@@ -242,6 +243,7 @@ switch($step) {
 		}
 	}
 	unset( $line );
+
 
 		setup_config_display_header();
 ?>

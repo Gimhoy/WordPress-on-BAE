@@ -150,7 +150,7 @@ function update_right_now_message() {
 			$msg .= " <a href='" . network_admin_url( 'update-core.php' ) . "' class='button'>" . sprintf( __('Update to %s'), $cur->current ? $cur->current : __( 'Latest' ) ) . '</a>';
 	}
 
-	echo "<span id='wp-version-message'>$msg</span>";
+	echo "<span id='wp-version-message'>$msg <b>由 <a href='http://blog.gimhoy.com/archives/wordpress-on-bae.html'>Gimhoy</a> 移植至 BAE。<a href='http://me.alipay.com/gimhoy'><span style='color:red'>捐赠</span></a></b></span>";
 }
 
 function get_plugin_updates() {

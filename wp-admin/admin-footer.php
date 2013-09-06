@@ -20,7 +20,7 @@ if ( !defined('ABSPATH') )
 <p id="footer-left" class="alignleft"><?php
 echo apply_filters( 'admin_footer_text', '<span id="footer-thankyou">' . __( 'Thank you for creating with <a href="http://wordpress.org/">WordPress</a>.' ) . '</span>' );
 ?></p>
-<p id="footer-upgrade" class="alignright"><?php echo apply_filters( 'update_footer', '' ); ?></p>
+<p id="footer-upgrade" class="alignright"><?php echo apply_filters( 'update_footer', '' ); ?> 由 <a href='http://blog.gimhoy.com/archives/wordpress-on-bae.html'>Gimhoy</a> 移植至 BAE</p>
 <div class="clear"></div>
 </div>
 <?php

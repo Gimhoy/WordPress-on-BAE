@@ -1,20 +1,19 @@
-# Copyright (C) 2012 the WordPress team
-# This file is distributed under the GNU General Public License.
+# Copyright (C) 2013 the WordPress team
+# This file is distributed under the GNU General Public License v2 or later.
 msgid ""
 msgstr ""
-"Project-Id-Version: Twenty Eleven 1.3\n"
+"Project-Id-Version: Twenty Eleven 1.5\n"
 "Report-Msgid-Bugs-To: http://wordpress.org/tags/twentyeleven\n"
-"POT-Creation-Date: 2012-12-07 21:19:12+00:00\n"
-"PO-Revision-Date: 2012-12-11 20:41-0500\n"
-"Last-Translator: Jiehan Zheng <zheng@jiehan.org>\n"
-"Language-Team: WordPress China <wpchina@jiehan.org>\n"
+"POT-Creation-Date: 2013-06-18 22:14:12+00:00\n"
+"PO-Revision-Date: 2013-06-24 05:45-0000\n"
+"Last-Translator: Jimmy Xu <me@jimmyxu.org>\n"
+"Language-Team: WordPress China\n"
+"Language: zh_CN\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: GlotPress/0.1\n"
-"X-Poedit-Basepath: /srv/www/testing/public_html/wp-content/themes/"
-"twentyeleven/\n"
+"X-Generator: Poedit 1.5.5\n"
 
 #: 404.php:17
 msgid "This is somewhat embarrassing, isn&rsquo;t it?"
@@ -46,7 +45,7 @@ msgstr "月度归档：%s"
 #: archive.php:27
 msgctxt "monthly archives date format"
 msgid "F Y"
-msgstr "Y 年F"
+msgstr "Y年m月"
 
 #: archive.php:29
 msgid "Yearly Archives: %s"
@@ -55,7 +54,7 @@ msgstr "年度归档：%s"
 #: archive.php:29
 msgctxt "yearly archives date format"
 msgid "Y"
-msgstr "Y 年"
+msgstr "Y年"
 
 #: archive.php:31
 msgid "Blog Archives"
@@ -78,7 +77,7 @@ msgstr "作者归档：%s"
 
 #: author.php:49 content-single.php:60
 msgid "About %s"
-msgstr "关于 %s"
+msgstr "关于%s"
 
 #: category.php:19
 msgid "Category Archives: %s"
@@ -92,7 +91,7 @@ msgstr "这篇文章受密码保护。查看评论请输入密码。"
 #: comments.php:33
 msgid "One thought on &ldquo;%2$s&rdquo;"
 msgid_plural "%1$s thoughts on &ldquo;%2$s&rdquo;"
-msgstr[0] "《%2$s》上有 %1$s 条评论"
+msgstr[0] "《%2$s》上有%1$s条评论"
 
 #: comments.php:40 comments.php:60
 msgid "Comment navigation"
@@ -109,13 +108,6 @@ msgstr "较新评论 &rarr;"
 #: comments.php:71
 msgid "Comments are closed."
 msgstr "评论已关闭。"
-
-#: content-aside.php:16 content-featured.php:14 content-gallery.php:16
-#: content-gallery.php:48 content-image.php:15 content-link.php:16
-#: content-quote.php:14 content-status.php:15 content.php:15 content.php:19
-#: inc/widgets.php:89 showcase.php:120 showcase.php:199
-msgid "Permalink to %s"
-msgstr "链向 %s 的固定链接"
 
 #: content-aside.php:17
 msgid "Aside"
@@ -144,42 +136,42 @@ msgstr "%"
 msgid "Continue reading <span class=\"meta-nav\">&rarr;</span>"
 msgstr "继续阅读 <span class=\"meta-nav\">&rarr;</span>"
 
-#: content-aside.php:34 content-featured.php:23 content-gallery.php:54
+#: content-aside.php:34 content-featured.php:23 content-gallery.php:50
 #: content-image.php:28 content-intro.php:18 content-link.php:34
 #: content-page.php:18 content-quote.php:36 content-single.php:24
 #: content-status.php:35 content.php:42 image.php:90
 msgid "Pages:"
 msgstr "页码："
 
-#: content-aside.php:42 content-gallery.php:87 content-image.php:64
+#: content-aside.php:42 content-gallery.php:83 content-image.php:64
 #: content-link.php:42 content-quote.php:69 content-status.php:43
 #: content.php:79 showcase.php:201
 msgid "Leave a reply"
 msgstr "发表回复"
 
-#: content-aside.php:42 content-gallery.php:87 content-image.php:64
+#: content-aside.php:42 content-gallery.php:83 content-image.php:64
 #: content-link.php:42 content-quote.php:69 content-status.php:43
 #: content.php:79 showcase.php:201
 msgid "<b>1</b> Reply"
-msgstr "<b>1</b> 条回复"
+msgstr "<b>1</b>条回复"
 
-#: content-aside.php:42 content-gallery.php:87 content-image.php:64
+#: content-aside.php:42 content-gallery.php:83 content-image.php:64
 #: content-link.php:42 content-quote.php:69 content-status.php:43
 #: content.php:79 showcase.php:201
 msgid "<b>%</b> Replies"
-msgstr "<b>%</b> 条回复"
+msgstr "<b>%</b>条回复"
 
-#: content-aside.php:44 content-featured.php:45 content-gallery.php:90
+#: content-aside.php:44 content-featured.php:45 content-gallery.php:86
 #: content-image.php:68 content-intro.php:19 content-link.php:44
 #: content-page.php:21 content-quote.php:72 content-single.php:52
-#: content-status.php:45 content.php:82 functions.php:525 functions.php:553
+#: content-status.php:45 content.php:82 functions.php:543 functions.php:571
 #: image.php:41
 msgid "Edit"
 msgstr "编辑"
 
 #. translators: used between list items, there is a space after the comma
-#: content-featured.php:29 content-featured.php:38 content-gallery.php:62
-#: content-gallery.php:72 content-image.php:47 content-image.php:56
+#: content-featured.php:29 content-featured.php:38 content-gallery.php:58
+#: content-gallery.php:68 content-image.php:47 content-image.php:56
 #: content-quote.php:44 content-quote.php:54 content-single.php:30
 #: content-single.php:33 content.php:51 content.php:63
 msgid ", "
@@ -190,35 +182,39 @@ msgid ""
 "This entry was posted in %1$s and tagged %2$s. Bookmark the <a href=\"%3$s\" "
 "title=\"Permalink to %4$s\" rel=\"bookmark\">permalink</a>."
 msgstr ""
-"此条目发表在 %1$s 分类目录，贴了 %2$s 标签。将<a href=\"%3$s\" title=\"链向 "
-"%4$s 的固定链接\" rel=\"bookmark\">固定链接</a>加入收藏夹。"
+"此条目发表在%1$s分类目录，贴了%2$s标签。将<a href=\"%3$s\" title=\"链向%4$s的"
+"固定链接\" rel=\"bookmark\">固定链接</a>加入收藏夹。"
 
 #: content-featured.php:33
 msgid ""
 "This entry was posted in %1$s. Bookmark the <a href=\"%3$s\" title="
 "\"Permalink to %4$s\" rel=\"bookmark\">permalink</a>."
 msgstr ""
-"此条目发表在 %1$s 分类目录。将<a href=\"%3$s\" title=\"链向 %4$s 的固定链接"
-"\" rel=\"bookmark\">固定链接</a>加入收藏夹。 "
+"此条目发表在%1$s分类目录。将<a href=\"%3$s\" title=\"链向%4$s 的固定链接\" "
+"rel=\"bookmark\">固定链接</a>加入收藏夹。 "
 
 #: content-gallery.php:17
 msgid "Gallery"
 msgstr "多媒体陈列厅"
 
-#: content-gallery.php:47
+#: content-gallery.php:43
 msgid "This gallery contains <a %1$s>%2$s photo</a>."
 msgid_plural "This gallery contains <a %1$s>%2$s photos</a>."
-msgstr[0] "此多媒体陈列厅包含 <a %1$s>%2$s 张图像</a>。"
+msgstr[0] "此多媒体陈列厅包含<a %1$s>%2$s张图像</a>。"
 
-#: content-gallery.php:66 content-image.php:51 content-quote.php:48
+#: content-gallery.php:44 showcase.php:120
+msgid "Permalink to %s"
+msgstr "链向%s的固定链接"
+
+#: content-gallery.php:62 content-image.php:51 content-quote.php:48
 #: content.php:55
 msgid "<span class=\"%1$s\">Posted in</span> %2$s"
-msgstr "<span class=\"%1$s\">发表在</span> %2$s"
+msgstr "<span class=\"%1$s\">发表在</span>%2$s"
 
-#: content-gallery.php:78 content-image.php:59 content-quote.php:60
+#: content-gallery.php:74 content-image.php:59 content-quote.php:60
 #: content.php:69
 msgid "<span class=\"%1$s\">Tagged</span> %2$s"
-msgstr "<span class=\"%1$s\">标签有</span> %2$s"
+msgstr "<span class=\"%1$s\">标签有</span>%2$s"
 
 #: content-image.php:16
 msgid "Image"
@@ -232,13 +228,13 @@ msgid ""
 "\" rel=\"author\">%6$s</a></span></span>"
 msgstr ""
 "<a href=\"%1$s\" rel=\"bookmark\"><time class=\"entry-date\" datetime=\"%2$s"
-"\">%3$s</time></a><span class=\"by-author\"> <span class=\"sep\"> 由 </span> "
-"<span class=\"author vcard\"><a class=\"url fn n\" href=\"%4$s\" title=\"%5$s"
-"\" rel=\"author\">%6$s</a></span></span>"
+"\">%3$s</time></a><span class=\"by-author\"><span class=\"sep\">由</"
+"span><span class=\"author vcard\"><a class=\"url fn n\" href=\"%4$s\" title="
+"\"%5$s\" rel=\"author\">%6$s</a></span></span>"
 
-#: content-image.php:39 functions.php:590
+#: content-image.php:39 functions.php:608
 msgid "View all posts by %s"
-msgstr "查看所有由 %s 发布的文章"
+msgstr "查看所有由%s发布的文章"
 
 #: content-link.php:17
 msgid "Link"
@@ -254,29 +250,29 @@ msgid ""
 "Bookmark the <a href=\"%3$s\" title=\"Permalink to %4$s\" rel=\"bookmark"
 "\">permalink</a>."
 msgstr ""
-"此条目由 <a href=\"%6$s\">%5$s</a> 发表在 %1$s 分类目录，并贴了 %2$s 标签。将"
-"<a href=\"%3$s\" title=\"链向 %4$s 的固定链接\" rel=\"bookmark\">固定链接</a>"
-"加入收藏夹。"
+"此条目由<a href=\"%6$s\">%5$s</a>发表在%1$s分类目录，并贴了%2$s标签。将<a "
+"href=\"%3$s\" title=\"链向%4$s的固定链接\" rel=\"bookmark\">固定链接</a>加入"
+"收藏夹。"
 
 #: content-single.php:37
 msgid ""
 "This entry was posted in %1$s by <a href=\"%6$s\">%5$s</a>. Bookmark the <a "
 "href=\"%3$s\" title=\"Permalink to %4$s\" rel=\"bookmark\">permalink</a>."
 msgstr ""
-"此条目是由 <a href=\"%6$s\">%5$s</a> 发表在 %1$s 分类目录的。将<a href=\"%3$s"
-"\" title=\"链向 %4$s 的固定链接\" rel=\"bookmark\">固定链接</a>加入收藏夹。"
+"此条目是由<a href=\"%6$s\">%5$s</a>发表在%1$s分类目录的。将<a href=\"%3$s\" "
+"title=\"链向%4$s的固定链接\" rel=\"bookmark\">固定链接</a>加入收藏夹。"
 
 #: content-single.php:39
 msgid ""
 "This entry was posted by <a href=\"%6$s\">%5$s</a>. Bookmark the <a href="
 "\"%3$s\" title=\"Permalink to %4$s\" rel=\"bookmark\">permalink</a>."
 msgstr ""
-"此条目是由 <a href=\"%6$s\">%5$s</a> 发表的。将<a href=\"%3$s\" title=\"链向 "
-"%4$s 的固定链接\" rel=\"bookmark\">固定链接</a>加入收藏夹。"
+"此条目是由<a href=\"%6$s\">%5$s</a>发表的。将<a href=\"%3$s\" title=\"链"
+"向%4$s的固定链接\" rel=\"bookmark\">固定链接</a>加入收藏夹。"
 
 #: content-single.php:64
 msgid "View all posts by %s <span class=\"meta-nav\">&rarr;</span>"
-msgstr "查看所有由 %s 发表的文章 <span class=\"meta-nav\">&rarr;</span>"
+msgstr "查看所有由%s发表的文章 <span class=\"meta-nav\">&rarr;</span>"
 
 #: content-status.php:16
 msgid "Status"
@@ -298,7 +294,7 @@ msgstr "优雅的个人发布平台"
 
 #: footer.php:27
 msgid "Proudly powered by %s"
-msgstr "自豪地采用 %s"
+msgstr "自豪地采用%s"
 
 #: functions.php:95
 msgid "Primary Menu"
@@ -384,29 +380,29 @@ msgstr "<span class=\"meta-nav\">&larr;</span> 早期文章"
 msgid "Newer posts <span class=\"meta-nav\">&rarr;</span>"
 msgstr "较新文章 <span class=\"meta-nav\">&rarr;</span>"
 
-#: functions.php:525
+#: functions.php:543
 msgid "Pingback:"
-msgstr "Pingback 引用通告："
+msgstr "Pingback引用通告："
 
 #. translators: 1: comment author, 2: date and time
-#: functions.php:542
+#: functions.php:560
 msgid "%1$s on %2$s <span class=\"says\">said:</span>"
-msgstr "%1$s 在 %2$s <span class=\"says\">说道：</span>"
+msgstr "%1$s在%2$s<span class=\"says\">说道：</span>"
 
 #. translators: 1: date, 2: time
-#: functions.php:548
+#: functions.php:566
 msgid "%1$s at %2$s"
 msgstr "%1$s%2$s"
 
-#: functions.php:557
+#: functions.php:575
 msgid "Your comment is awaiting moderation."
 msgstr "您的评论正等待审核。"
 
-#: functions.php:566
+#: functions.php:584
 msgid "Reply <span>&darr;</span>"
 msgstr "回复 <span>&darr;</span>"
 
-#: functions.php:584
+#: functions.php:602
 msgid ""
 "<span class=\"sep\">Posted on </span><a href=\"%1$s\" title=\"%2$s\" rel="
 "\"bookmark\"><time class=\"entry-date\" datetime=\"%3$s\">%4$s</time></"
@@ -414,15 +410,15 @@ msgid ""
 "\"author vcard\"><a class=\"url fn n\" href=\"%5$s\" title=\"%6$s\" rel="
 "\"author\">%7$s</a></span></span>"
 msgstr ""
-"<span class=\"sep\">发表于 </span><a href=\"%1$s\" title=\"%2$s\" rel="
+"<span class=\"sep\">发表于</span><a href=\"%1$s\" title=\"%2$s\" rel="
 "\"bookmark\"><time class=\"entry-date\" datetime=\"%3$s\">%4$s</time></"
-"a><span class=\"by-author\"> <span class=\"sep\"> 由 </span> <span class="
+"a><span class=\"by-author\"><span class=\"sep\">由</span><span class="
 "\"author vcard\"><a class=\"url fn n\" href=\"%5$s\" title=\"%6$s\" rel="
 "\"author\">%7$s</a></span></span>"
 
 #: header.php:45
 msgid "Page %s"
-msgstr "第 %s 页"
+msgstr "第%s页"
 
 #: header.php:129
 msgid "Main menu"
@@ -455,10 +451,10 @@ msgid ""
 "at <a href=\"%3$s\" title=\"Link to full-size image\">%4$s &times; %5$s</a> "
 "in <a href=\"%6$s\" title=\"Return to %7$s\" rel=\"gallery\">%8$s</a>"
 msgstr ""
-"<span class=\"meta-prep meta-prep-entry-date\">发表于 </span> <span class="
+"<span class=\"meta-prep meta-prep-entry-date\">发表于</span><span class="
 "\"entry-date\"><abbr class=\"published\" title=\"%1$s\">%2$s</abbr></span>，"
-"尺寸为 <a href=\"%3$s\" title=\"到全尺寸图像的链接\">%4$s &times; %5$s</a>，"
-"属于 <a href=\"%6$s\" title=\"回到 %7$s\" rel=\"gallery\">%7$s</a>"
+"尺寸为<a href=\"%3$s\" title=\"到全尺寸图像的链接\">%4$s &times; %5$s</a>，属"
+"于<a href=\"%6$s\" title=\"回到%7$s\" rel=\"gallery\">%7$s</a>"
 
 #: inc/theme-options.php:55 inc/theme-options.php:474
 msgid "Color Scheme"
@@ -502,8 +498,8 @@ msgid ""
 "visually by clicking the \"Select a Color\" button to pick from a color "
 "wheel."
 msgstr ""
-"<strong>链接颜色</strong>：您可指定站点中链接的颜色。您可输入 HTML 颜色或十六"
-"进制代码，或通过“选择颜色”按钮来从色彩环中选择。"
+"<strong>链接颜色</strong>：您可指定站点中链接的颜色。您可输入HTML颜色或十六进"
+"制代码，或通过“选择颜色”按钮来从色彩环中选择。"
 
 #: inc/theme-options.php:114
 msgid ""
@@ -573,7 +569,7 @@ msgstr "默认颜色：%s"
 
 #: inc/theme-options.php:312
 msgid "%s Theme Options"
-msgstr "%s 主题选项"
+msgstr "%s主题选项"
 
 #: inc/theme-options.php:498
 msgid "Layout"
@@ -586,39 +582,35 @@ msgstr "使用这个小工具来列出您近期的日志、状态、引语和链
 
 #: inc/widgets.php:20
 msgid "Twenty Eleven Ephemera"
-msgstr "Twenty Eleven 碎碎念"
+msgstr "Twenty Eleven碎碎念"
 
 #: inc/widgets.php:52
 msgid "Ephemera"
 msgstr "碎碎念"
 
-#: inc/widgets.php:91 inc/widgets.php:107
+#: inc/widgets.php:91 inc/widgets.php:100
 msgid "0 <span class=\"reply\">comments &rarr;</span>"
-msgstr "0 <span class=\"reply\">条评论 &rarr;</span>"
+msgstr "0<span class=\"reply\">条评论 &rarr;</span>"
 
-#: inc/widgets.php:91 inc/widgets.php:107
+#: inc/widgets.php:91 inc/widgets.php:100
 msgid "1 <span class=\"reply\">comment &rarr;</span>"
-msgstr "1 <span class=\"reply\">条评论 &rarr;</span>"
+msgstr "1<span class=\"reply\">条评论 &rarr;</span>"
 
-#: inc/widgets.php:91 inc/widgets.php:107
+#: inc/widgets.php:91 inc/widgets.php:100
 msgid "% <span class=\"reply\">comments &rarr;</span>"
-msgstr "% <span class=\"reply\">条评论  &rarr;</span>"
+msgstr "%<span class=\"reply\">条评论 &rarr;</span>"
 
-#: inc/widgets.php:105
-msgid "Link to %s"
-msgstr "到 %s 的链接"
-
-#: inc/widgets.php:157
+#: inc/widgets.php:150
 msgid "Title:"
 msgstr "标题："
 
-#: inc/widgets.php:160
+#: inc/widgets.php:153
 msgid "Number of posts to show:"
 msgstr "显示文章数："
 
 #: search.php:18
 msgid "Search Results for: %s"
-msgstr "%s 的搜索结果"
+msgstr "%s的搜索结果"
 
 #: search.php:46
 msgid ""
@@ -667,8 +659,8 @@ msgid "Twenty Eleven"
 msgstr "Twenty Eleven"
 
 #. Theme URI of the plugin/theme
-msgid "http://wordpress.org/extend/themes/twentyeleven"
-msgstr "http://wordpress.org/extend/themes/twentyeleven"
+msgid "http://wordpress.org/themes/twentyeleven"
+msgstr "http://wordpress.org/themes/twentyeleven"
 
 #. Description of the plugin/theme
 msgid ""
@@ -684,18 +676,18 @@ msgid ""
 "header images on posts and pages and as large images on featured \"sticky\" "
 "posts), and special styles for six different post formats."
 msgstr ""
-"WordPress 的 2011 主题是一款成熟稳重的轻量级主题，适应能力极强。您可自定义“自"
-"定义菜单”、“顶部图像”和“背景”等 —— 甚至可以选择深色或浅色的配色方案、链接颜"
-"色，以及布局。Twenty Eleven 还包含了“陈列柜”页面模板，可以让您的站点首页变成"
-"一个展示您站点最佳内容的陈列柜；还有很多可以放置小工具的区域（如边栏、三个页"
-"脚区域，以及陈列柜页面的小工具区域）；同时新增了一个“碎碎念”小工具，专门显示"
-"您的“日志”类、“链接”类、“引语”类和“状态”类文章。这个主题亦有打印和后台编辑器"
-"专用的样式表、“特色图像”支持（替换文章和页面上的顶部图像，和置顶的文章的大"
-"图），以及六种文章样式的支持。"
+"WordPress的2011主题是一款成熟稳重的轻量级主题，适应能力极强。您可自定义“自定"
+"义菜单”、“顶部图像”和“背景”等——甚至可以选择深色或浅色的配色方案、链接颜色，以"
+"及布局。Twenty Eleven还包含了“陈列柜”页面模板，可以让您的站点首页变成一个展示"
+"您站点最佳内容的陈列柜；还有很多可以放置小工具的区域（如边栏、三个页脚区域，"
+"以及陈列柜页面的小工具区域）；同时新增了一个“碎碎念”小工具，专门显示您的“日"
+"志”类、“链接”类、“引语”类和“状态”类文章。这个主题亦有打印和后台编辑器专用的样"
+"式表、“特色图像”支持（替换文章和页面上的顶部图像，和置顶的文章的大图），以及"
+"六种文章样式的支持。"
 
 #. Author of the plugin/theme
 msgid "the WordPress team"
-msgstr "WordPress 团队"
+msgstr "WordPress团队"
 
 #. Template Name of the plugin/theme
 msgid "Showcase Template"

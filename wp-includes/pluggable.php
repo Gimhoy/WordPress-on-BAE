@@ -180,13 +180,99 @@ endif;
  */
 if ( !function_exists( 'wp_mail' ) ) :
 function wp_mail( $to, $subject, $message, $headers = '', $attachments = array() ) {
-	require_once ABSPATH . WPINC . '/Bcms.class.php';
+    // Headers
+    if ( empty( $headers ) ) {
+        $headers = array();
+    } else {
+        if ( !is_array( $headers ) ) {
+            // Explode the headers out, so this function can take both
+            // string headers and an array of headers.
+            $tempheaders = explode( "\n", str_replace( "\r\n", "\n", $headers ) );
+        } else {
+            $tempheaders = $headers;
+        }
+        $headers = array();
+  
+        // If it's actually got contents
+        if ( !empty( $tempheaders ) ) {
+            // Iterate through the raw headers
+            foreach ( (array) $tempheaders as $header ) {
+                // Explode them out
+                list( $name, $content ) = explode( ':', trim( $header ), 2 );
+  
+                // Cleanup crew
+                $name    = trim( $name    );
+                $content = trim( $content );
+  
+                switch ( strtolower( $name ) ) {
+                    // Mainly for legacy -- process a From: header if it's there
+                    case 'from':
+                        if ( strpos($content, '<' ) !== false ) {
+                            // So... making my life hard again?
+                            $from_name = substr( $content, 0, strpos( $content, '<' ) - 1 );
+                            $from_name = str_replace( '"', '', $from_name );
+                            $from_name = trim( $from_name );
+  
+                            $from_email = substr( $content, strpos( $content, '<' ) + 1 );
+                            $from_email = str_replace( '>', '', $from_email );
+                            $from_email = trim( $from_email );
+                        } else {
+                            $from_email = trim( $content );
+                        }
+                        break;
+                    case 'content-type':
+                        if ( strpos( $content, ';' ) !== false ) {
+                            list( $type, $charset ) = explode( ';', $content );
+                            $content_type = trim( $type );
+                        } else {
+                            $content_type = trim( $content );
+                        }
+                        break;
+                     
+                }
+            }
+        }
+    }
+     
+    /* If we don't have an email from the input headers default to wordpress@$sitename
+     * Some hosts will block outgoing mail from this address if it doesn't exist but
+     * there's no easy alternative. Defaulting to admin_email might appear to be another
+     * option but some hosts may refuse to relay mail from an unknown domain. See
+     * http://trac.wordpress.org/ticket/5007.
+     */
+  
+    if ( !isset( $from_email ) ) {
+        // Get the site domain and get rid of www.
+        $sitename = strtolower( $_SERVER['SERVER_NAME'] );
+        if ( substr( $sitename, 0, 4 ) == 'www.' ) {
+            $sitename = substr( $sitename, 4 );
+        }
+  
+        $from_email = 'no-reply@' . $sitename;
+    }
+     
+    // Set Content-Type and charset
+    // If we don't have a content-type from the input headers
+    if ( !isset( $content_type ) )
+        $content_type = 'text/plain';
+  
+    $content_type = apply_filters( 'wp_mail_content_type', $content_type );
+    if($content_type == 'text/html') {
+        $header = "<!--HTML-->";
+    }
+     
+    // 重复引用，BaeException就是这里报的
+    // require_once ABSPATH . WPINC . '/Bcms.class.php';
     $bcms = new Bcms () ;
-    $ret = $bcms->mail ( BCMS_QUEUE, $message, array($to), array( Bcms::MAIL_SUBJECT => $subject)) ;
-	if ( false === $ret ) {
-		return false;
-	} else {
-		return true;
+     
+    // 利用bcms发信
+    $ret = $bcms->mail ( BCMS_QUEUE, $header.$message, array($to), array( Bcms::FROM=>$from_email ,Bcms::MAIL_SUBJECT => $subject)) ;
+ 
+    // 返回值
+    if ( false === $ret ) {
+        return false;
+    } else {
+        return true;
     }
 }
 endif;
@@ -465,12 +551,10 @@ function wp_mail( $to, $subject, $message, $headers = '', $attachments = array()
 
 	// Send!
 	try {
-		$phpmailer->Send();
+		return $phpmailer->Send();
 	} catch ( phpmailerException $e ) {
 		return false;
 	}
-
-	return true;
 }
 endif;
 
@@ -668,9 +752,9 @@ if ( !function_exists('wp_set_auth_cookie') ) :
  */
 function wp_set_auth_cookie($user_id, $remember = false, $secure = '') {
 	if ( $remember ) {
-		$expiration = $expire = time() + apply_filters('auth_cookie_expiration', 1209600, $user_id, $remember);
+		$expiration = $expire = time() + apply_filters('auth_cookie_expiration', 14 * DAY_IN_SECONDS, $user_id, $remember);
 	} else {
-		$expiration = time() + apply_filters('auth_cookie_expiration', 172800, $user_id, $remember);
+		$expiration = time() + apply_filters('auth_cookie_expiration', 2 * DAY_IN_SECONDS, $user_id, $remember);
 		$expire = 0;
 	}
 
@@ -833,7 +917,8 @@ function check_admin_referer($action = -1, $query_arg = '_wpnonce') {
 	}
 	do_action('check_admin_referer', $action, $result);
 	return $result;
-}endif;
+}
+endif;
 
 if ( !function_exists('check_ajax_referer') ) :
 /**
@@ -1015,6 +1100,10 @@ function wp_notify_postauthor( $comment_id, $comment_type = '' ) {
 	if ( $post->post_author == get_current_user_id() )
 		return false;
 
+	// The post author is no longer a member of the blog
+	if ( ! user_can( $post->post_author, 'read_post', $post->ID ) )
+		return false;
+
 	// If there's no email to send the comment to
 	if ( '' == $author->user_email )
 		return false;
@@ -1059,11 +1148,14 @@ function wp_notify_postauthor( $comment_id, $comment_type = '' ) {
 	}
 	$notify_message .= get_permalink($comment->comment_post_ID) . "#comments\r\n\r\n";
 	$notify_message .= sprintf( __('Permalink: %s'), get_permalink( $comment->comment_post_ID ) . '#comment-' . $comment_id ) . "\r\n";
-	if ( EMPTY_TRASH_DAYS )
-		$notify_message .= sprintf( __('Trash it: %s'), admin_url("comment.php?action=trash&c=$comment_id") ) . "\r\n";
-	else
-		$notify_message .= sprintf( __('Delete it: %s'), admin_url("comment.php?action=delete&c=$comment_id") ) . "\r\n";
-	$notify_message .= sprintf( __('Spam it: %s'), admin_url("comment.php?action=spam&c=$comment_id") ) . "\r\n";
+
+	if ( user_can( $post->post_author, 'edit_comment', $comment_id ) ) {
+		if ( EMPTY_TRASH_DAYS )
+			$notify_message .= sprintf( __('Trash it: %s'), admin_url("comment.php?action=trash&c=$comment_id") ) . "\r\n";
+		else
+			$notify_message .= sprintf( __('Delete it: %s'), admin_url("comment.php?action=delete&c=$comment_id") ) . "\r\n";
+		$notify_message .= sprintf( __('Spam it: %s'), admin_url("comment.php?action=spam&c=$comment_id") ) . "\r\n";
+	}
 
 	$wp_email = 'wordpress@' . preg_replace('#^www\.#', '', strtolower($_SERVER['SERVER_NAME']));
 
@@ -1209,27 +1301,24 @@ if ( !function_exists('wp_new_user_notification') ) :
 function wp_new_user_notification($user_id, $plaintext_pass = '') {
 	$user = get_userdata( $user_id );
 
-	$user_login = stripslashes($user->user_login);
-	$user_email = stripslashes($user->user_email);
-
 	// The blogname option is escaped with esc_html on the way into the database in sanitize_option
 	// we want to reverse this for the plain text arena of emails.
 	$blogname = wp_specialchars_decode(get_option('blogname'), ENT_QUOTES);
 
 	$message  = sprintf(__('New user registration on your site %s:'), $blogname) . "\r\n\r\n";
-	$message .= sprintf(__('Username: %s'), $user_login) . "\r\n\r\n";
-	$message .= sprintf(__('E-mail: %s'), $user_email) . "\r\n";
+	$message .= sprintf(__('Username: %s'), $user->user_login) . "\r\n\r\n";
+	$message .= sprintf(__('E-mail: %s'), $user->user_email) . "\r\n";
 
 	@wp_mail(get_option('admin_email'), sprintf(__('[%s] New User Registration'), $blogname), $message);
 
 	if ( empty($plaintext_pass) )
 		return;
 
-	$message  = sprintf(__('Username: %s'), $user_login) . "\r\n";
+	$message  = sprintf(__('Username: %s'), $user->user_login) . "\r\n";
 	$message .= sprintf(__('Password: %s'), $plaintext_pass) . "\r\n";
 	$message .= wp_login_url() . "\r\n";
 
-	wp_mail($user_email, sprintf(__('[%s] Your username and password'), $blogname), $message);
+	wp_mail($user->user_email, sprintf(__('[%s] Your username and password'), $blogname), $message);
 
 }
 endif;
@@ -1274,10 +1363,10 @@ function wp_verify_nonce($nonce, $action = -1) {
 	$i = wp_nonce_tick();
 
 	// Nonce generated 0-12 hours ago
-	if ( substr(wp_hash($i . $action . $uid, 'nonce'), -12, 10) == $nonce )
+	if ( substr(wp_hash($i . $action . $uid, 'nonce'), -12, 10) === $nonce )
 		return 1;
 	// Nonce generated 12-24 hours ago
-	if ( substr(wp_hash(($i - 1) . $action . $uid, 'nonce'), -12, 10) == $nonce )
+	if ( substr(wp_hash(($i - 1) . $action . $uid, 'nonce'), -12, 10) === $nonce )
 		return 2;
 	// Invalid nonce
 	return false;
@@ -1580,7 +1669,7 @@ if ( !function_exists('wp_set_password') ) :
 function wp_set_password( $password, $user_id ) {
 	global $wpdb;
 
-	$hash = wp_hash_password($password);
+	$hash = wp_hash_password( trim( $password ) );
 	$wpdb->update($wpdb->users, array('user_pass' => $hash, 'user_activation_key' => ''), array('ID' => $user_id) );
 
 	wp_cache_delete($user_id, 'users');
@@ -1725,16 +1814,20 @@ function wp_text_diff( $left_string, $right_string, $args = null ) {
 
 	$left_lines  = explode("\n", $left_string);
 	$right_lines = explode("\n", $right_string);
-
 	$text_diff = new Text_Diff($left_lines, $right_lines);
-	$renderer  = new WP_Text_Diff_Renderer_Table();
+	$renderer  = new WP_Text_Diff_Renderer_Table( $args );
 	$diff = $renderer->render($text_diff);
 
 	if ( !$diff )
 		return '';
 
 	$r  = "<table class='diff'>\n";
-	$r .= "<col class='ltype' /><col class='content' /><col class='ltype' /><col class='content' />";
+
+	if ( ! empty( $args[ 'show_split_view' ] ) ) {
+		$r .= "<col class='content diffsplit left' /><col class='content diffsplit middle' /><col class='content diffsplit right' />";
+	} else {
+		$r .= "<col class='content' />";
+	}
 
 	if ( $args['title'] || $args['title_left'] || $args['title_right'] )
 		$r .= "<thead>";
@@ -1755,3 +1848,4 @@ function wp_text_diff( $left_string, $right_string, $args = null ) {
 	return $r;
 }
 endif;
+
